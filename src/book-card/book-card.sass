@@ -1,0 +1,62 @@
+li[book-card]
+	$break: 450px
+
+	box-sizing: border-box
+	position: relative
+	display: inline-block
+
+	max-width: 23em
+	width: 100%
+	margin: 1em 0
+	background-color: #F2F2F2
+	vertical-align: top
+
+	&:hover
+		background-color: $hoveredUI
+
+	@media (min-width: $break)
+		margin: 1em
+
+	.cover
+		cursor: pointer
+		float: left
+
+		background-position: center
+		background-size: cover
+		width: 6em
+		height: 8em
+
+		@media (min-width: 450px)
+			width: 9em
+			height: 12em
+
+	.details
+
+		box-sizing: border-box
+		position: absolute
+		left: 6.5em
+
+		padding: .4em .5em
+		text-align: left
+
+		@media (min-width: $break)
+			left: 9.5em
+
+		span
+			display: block
+
+	.author, .votes, .published
+		font-size: .8em
+
+		@media (min-width: $break)
+			font-size: .9em
+
+	.title, .votes
+		padding-bottom: .3em
+
+	.author
+		padding-bottom: 1em
+
+	.title
+		font-weight: bold
+		cursor: pointer

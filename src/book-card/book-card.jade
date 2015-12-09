@@ -1,0 +1,16 @@
+.cover(
+ng-click="bookCard.goToBookById(book.id)"
+ng-style="{ 'background-image': 'url(' + book.cover + ')' }"
+)
+
+.details
+	span.title(ng-click="bookCard.goToBookById(book.id)") {{ book.name }}
+	span.author
+		i by:&nbsp;
+		|{{ book.author.name }}
+	span.votes
+		i Votes:&nbsp;
+		|{{ book.likes }}
+	span.published
+		i Published:&nbsp;
+		|{{ book.published | daysSince }}

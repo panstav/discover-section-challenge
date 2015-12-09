@@ -1,0 +1,60 @@
+.hero(ng-form="bookDiscovery")
+
+	.options
+
+		h1 Discover Section
+
+		p Search by book or author:
+
+		input(
+		name="search"
+		type="text"
+		ng-model="booksIndex.search"
+		ng-model-options="{ debounce: 250 }"
+		ng-change="booksIndex.filterBooks()"
+		placeholder="Search"
+		)
+
+		p Or explore the genres:
+
+		.selects
+
+			select(
+			ng-change="booksIndex.filterBooks()"
+			ng-model="booksIndex.category"
+			)
+				option(value="") All Categories
+				option(value="Fiction") Fiction
+				option(value="Non-Fiction") Non-Fiction
+
+			select(
+			ng-change="booksIndex.filterBooks()"
+			ng-model="booksIndex.genre"
+			ng-options="genre.name as genre.name for genre in booksIndex.genresOptions"
+			)
+				option(value="") All Genres
+
+		button.reset(
+		ng-click="booksIndex.resetFilter()"
+		ng-show="booksIndex.books"
+		) Reset Filter
+
+ul.books
+	li(
+	ng-repeat="book in booksIndex.books"
+	book-card="book"
+	)
+
+footer(ng-show="booksIndex.pagination")
+
+	button.prev(
+	ng-click="booksIndex.prevPage()"
+	ng-show="booksIndex.currentPage > 1"
+	) Previous
+
+	button.next(
+	ng-click="booksIndex.nextPage()"
+	ng-show="booksIndex.currentPage < booksIndex.totalPages"
+	) Next
+
+	.currentPage {{ booksIndex.currentPage + ' / ' + booksIndex.totalPages }}

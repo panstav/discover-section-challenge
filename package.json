@@ -1,0 +1,27 @@
+{
+  "name": "discover-section-challenge",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "1.4.8",
+    "angular-ui-router": "0.2.15",
+    "express": "4.13.3",
+    "gulp": "3.9.0",
+    "gulp-jade": "1.1.0",
+    "gulp-rename": "1.2.2",
+    "gulp-sass": "2.1.0",
+    "gulp-util": "3.0.7",
+    "html-loader": "0.4.0",
+    "jade": "1.11.0",
+    "jade-html-loader": "0.0.3",
+    "json-loader": "0.5.4",
+    "jsonfile": "2.2.3",
+    "webpack": "1.12.9"
+  }
+}
