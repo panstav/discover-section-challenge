@@ -8,17 +8,44 @@ function service($state){
 
 		getAll: function(){ return books },
 
+		getAllGenres: getAllGenres,
+
 		getBookById: getBookById,
 
 		filter: filter,
 
 		getRandomFromGenre: getRandomFromGenre,
 
-		goToBookById: function(id){
-			$state.go('book-show', { id: id });
-		}
+		goToBookById: function(id){ $state.go('book-show', { id: id }) }
 
 	};
+
+}
+
+function getAllGenres(){
+
+	return books.reduce(extractGenres, []).sort(sortGenres);
+
+	function extractGenres(genres, book){
+
+		var foundGenre;
+		for (var i in genres){
+			if (genres[i].name === book.genre.name){
+				foundGenre = true;
+
+				break;
+			}
+		}
+
+		if (!foundGenre) genres.push(book.genre);
+
+		return genres;
+	}
+
+	function sortGenres(a, b){
+		if (a.name < b.name) return -1;
+		if (a.name > b.name) return 1;
+	}
 
 }
 
@@ -65,7 +92,7 @@ function filter(options){
 
 function getRandomFromGenre(genre, excludeID){
 
-	// get books from this category, keep excluded one out
+	// get books from this category, keep excluded id out
 	var filteredBooks = filter({ genre: genre }).filter(function(book){ return book.id !== excludeID });
 
 	// return first three of a randomized filteredBooks

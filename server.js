@@ -15,7 +15,7 @@ module.exports.init = function(){
 		res.sendFile('index.html', { root: 'public' });
 	});
 
-	// Serve Static files
+	// Serve static files
 	server.use(express.static('public'));
 
 	// 404

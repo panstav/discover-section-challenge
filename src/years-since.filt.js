@@ -10,7 +10,8 @@ module.exports = function(){
 		var parsedDate = new Date(inputDate);
 
 		var yearsPast = Math.round(Math.abs((today.getTime() - parsedDate.getTime())/(oneYear)));
-		
+
+		// return "YYYY (X years ago)" structured date
 		return parsedDate.getFullYear() + ' (' + yearsPast + ' years ago)'
 	}
 };

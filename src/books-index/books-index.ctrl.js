@@ -1,13 +1,13 @@
 var BOOKS_PER_PAGE = 12;
 
-module.exports = ['$state', 'booksService', controller];
+module.exports = ['booksService', controller];
 
-function controller($state, booksService){
+function controller(booksService){
+
 	var ctrl = this;
 
-	var books = booksService.getAll();
-
-	this.allGenres = books.reduce(extractGenres, []).sort(sortGenres);
+	// get genres of both categories and for init - apply all of them to genreSelection
+	this.allGenres = booksService.getAllGenres();
 	this.genresOptions = this.allGenres;
 
 	// keep a record of all books going through filter
@@ -18,7 +18,9 @@ function controller($state, booksService){
 	this.filterBooks = function(){
 
 		// reset genre options at <select> to fit with selected category
-		ctrl.genresOptions = ctrl.category ? ctrl.allGenres.filter(onlyGenresOfCategory) : ctrl.allGenres;
+		ctrl.genresOptions = ctrl.category
+				? ctrl.allGenres.filter(onlyGenresOfCategory)
+				: ctrl.allGenres;
 
 		// filter books by user input, and save to cache
 		var filteredBooks = filteredBooksCache = booksService.filter({ search: ctrl.search, category: ctrl.category, genre: ctrl.genre });
@@ -35,6 +37,11 @@ function controller($state, booksService){
 
 		// attach to view
 		ctrl.books = paginatedBooks;
+
+		function onlyGenresOfCategory(genre){
+			return !ctrl.category || genre.category === ctrl.category;
+		}
+
 	};
 
 	this.resetFilter = function(){
@@ -66,37 +73,12 @@ function controller($state, booksService){
 		applyPagination();
 	};
 
-	function extractGenres(genres, book){
-
-		var foundGenre;
-		for (var i in genres){
-			if (genres[i].name === book.genre.name){
-				foundGenre = true;
-
-				break;
-			}
-		}
-
-		if (!foundGenre) genres.push(book.genre);
-
-		return genres;
-	}
-
 	function applyPagination(){
 		var startPos = (ctrl.currentPage - 1) * BOOKS_PER_PAGE;
 		var endPos = ctrl.currentPage * BOOKS_PER_PAGE;
 
 		// attache current page to view
 		ctrl.books = filteredBooksCache.slice(startPos, endPos);
-	}
-
-	function onlyGenresOfCategory(genre){
-		return !ctrl.category || genre.category === ctrl.category;
-	}
-
-	function sortGenres(a, b){
-		if (a.name < b.name) return -1;
-		if (a.name > b.name) return 1;
 	}
 
 }

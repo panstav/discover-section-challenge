@@ -17,6 +17,7 @@ function controller($state, booksService){
 
 	this.goToBookById = booksService.goToBookById;
 
+	// get few random books from same genre that don't have current books id
 	this.relatedBooks = booksService.getRandomFromGenre(ctrl.book.genre.name, bookID);
 
 }

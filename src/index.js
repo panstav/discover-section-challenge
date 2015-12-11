@@ -1,6 +1,7 @@
 var angular = require('angular');
 var states = require('./states');
 
+// let ui-router self register its module
 require('angular-ui-router');
 
 // register angular app
@@ -11,7 +12,7 @@ app.config(states);
 
 app.run(['$rootScope', '$state', function($rootScope){
 
-	// apply state title to page <title> on stateChange
+	// on state-change
 	$rootScope.$on('$stateChangeSuccess', function(e, toState){
 
 		// apply state title
@@ -23,7 +24,7 @@ app.run(['$rootScope', '$state', function($rootScope){
 
 }]);
 
-// register directives
+// register this modules components
 app.directive('booksIndex', require('./books-index/books-index.dirc'));
 app.directive('bookShow', require('./book-show/book-show.dirc'));
 app.directive('bookCard', require('./book-card/book-card.dirc'));
