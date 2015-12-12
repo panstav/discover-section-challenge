@@ -12,7 +12,7 @@ function controller($state, booksService){
 	// book not found, go back to index
 	if (!book) return $state.go('books-index');
 
-	// attach view
+	// attach book to view
 	this.book = book;
 
 	this.goToBookById = booksService.goToBookById;

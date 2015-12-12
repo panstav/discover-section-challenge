@@ -14,13 +14,9 @@ function directive(){
 		template: template,
 
 		controllerAs: 'bookCard',
-		controller: ['booksService', controller]
+		controller: ['booksService', function(booksService){
+			this.goToBookById = booksService.goToBookById;
+		}]
 
 	};
-}
-
-function controller(booksService){
-
-	this.goToBookById = booksService.goToBookById;
-
 }

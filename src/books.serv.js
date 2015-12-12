@@ -24,6 +24,7 @@ function service($state){
 
 function getAllGenres(){
 
+	// reduce books array to a sorted array of genre names
 	return books.reduce(extractGenres, []).sort(sortGenres);
 
 	function extractGenres(genres, book){
@@ -43,8 +44,7 @@ function getAllGenres(){
 	}
 
 	function sortGenres(a, b){
-		if (a.name < b.name) return -1;
-		if (a.name > b.name) return 1;
+		return a.name > b.name;
 	}
 
 }
@@ -95,6 +95,6 @@ function getRandomFromGenre(genre, excludeID){
 	// get books from this category, keep excluded id out
 	var filteredBooks = filter({ genre: genre }).filter(function(book){ return book.id !== excludeID });
 
-	// return first three of a randomized filteredBooks
+	// return first three of a shuffled filteredBooks
 	return filteredBooks.sort( function() { return 0.5 - Math.random() }).slice(0, 3);
 }

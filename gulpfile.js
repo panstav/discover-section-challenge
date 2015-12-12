@@ -22,7 +22,7 @@ gulp.task('sass', function(){
 gulp.task('jade', function(){
 
 	// compile only the index page
-	// the rest would be included in bundle using jade-loader
+	// the rest would be included in bundle using webpack loaders
 	return gulp.src('src/index.jade')
 		.pipe(jade({ pretty: true }))
 		.pipe(gulp.dest('public'));
@@ -66,7 +66,7 @@ gulp.task('prep-books', function(done){
 		if (err) return console.error(err);
 
 		// make each book cover unique
-		readyBooksArr = booksArr.map(uniquefyCovers);
+		var readyBooksArr = booksArr.map(uniquefyCovers);
 
 		// write file to whether it would be farther handled by webpack
 		jsonfile.writeFile('./src/books.json', readyBooksArr, done);

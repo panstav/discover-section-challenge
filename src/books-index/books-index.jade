@@ -1,4 +1,4 @@
-.hero(ng-form="bookDiscovery")
+.hero
 
 	.options
 
@@ -57,4 +57,4 @@ footer(ng-show="booksIndex.pagination")
 	ng-show="booksIndex.currentPage < booksIndex.totalPages"
 	) Next
 
-	.currentPage {{ booksIndex.currentPage + ' / ' + booksIndex.totalPages }}
+	.currentPage {{ booksIndex.currentPage }} / {{ booksIndex.totalPages }}

@@ -2,5 +2,5 @@
 /node_modules
 /npm-debug.log
 
-# compiled with optionally varying book-cover images
+# compiled with (optionally) varying book-cover images
 /src/books.json

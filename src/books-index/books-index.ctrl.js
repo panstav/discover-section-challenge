@@ -6,12 +6,14 @@ function controller(booksService){
 
 	var ctrl = this;
 
-	// get genres of both categories and for init - apply all of them to genreSelection
+	// get genres of both categories
 	this.allGenres = booksService.getAllGenres();
+
+	// apply all of them to genreSelection
 	this.genresOptions = this.allGenres;
 
 	// keep a record of all books going through filter
-	// so that pagination could show partials of it
+	// so that pagination could show sections of it
 	var filteredBooksCache;
 
 	// main filter === [genre, category, search]
@@ -25,7 +27,8 @@ function controller(booksService){
 		// filter books by user input, and save to cache
 		var filteredBooks = filteredBooksCache = booksService.filter({ search: ctrl.search, category: ctrl.category, genre: ctrl.genre });
 
-		// show only the first 12 books (or all of them)
+		// show only the first page
+		// or all the books if there's less than what fits in one page
 		var paginatedBooks = filteredBooks.slice(0, BOOKS_PER_PAGE);
 
 		// set pagination flag to show/hide next and previous button
@@ -77,7 +80,7 @@ function controller(booksService){
 		var startPos = (ctrl.currentPage - 1) * BOOKS_PER_PAGE;
 		var endPos = ctrl.currentPage * BOOKS_PER_PAGE;
 
-		// attache current page to view
+		// attach books on current page to view
 		ctrl.books = filteredBooksCache.slice(startPos, endPos);
 	}
 

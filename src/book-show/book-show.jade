@@ -1,13 +1,9 @@
-.hero(
-ng-style="{ 'background-image': 'url(' + bookShow.book.cover + ')' }"
-)
-
+.hero(ng-style="{ 'background-image': 'url(' + bookShow.book.cover + ')' }")
 	.A4
 		h1 {{ bookShow.book.name }}
 		p {{ bookShow.book.description }}
 
 .bar
-
 	.A4
 		span.author
 			i by:&nbsp;
@@ -15,7 +11,7 @@ ng-style="{ 'background-image': 'url(' + bookShow.book.cover + ')' }"
 			| {{ bookShow.book.author.name }}
 		span.published
 			i Published:&nbsp;
-			| {{ bookShow.book.published | daysSince }}
+			| {{ bookShow.book.published | yearsSince }}
 		span.votes
 			i Votes:&nbsp;
 			| {{ bookShow.book.likes }}
@@ -25,18 +21,9 @@ ng-style="{ 'background-image': 'url(' + bookShow.book.cover + ')' }"
 	p(ng-repeat="introPara in bookShow.book.introduction") {{ introPara.content }}
 
 footer.A4(ng-show="bookShow.relatedBooks")
-
 	h2 Check out these {{ bookShow.book.genre.name | booksSuffix }}
-
 	ul
 		li(
 		ng-repeat="book in bookShow.relatedBooks"
 		book-card="book"
 		)
-
-		//li(
-		//ng-repeat="book in bookShow.relatedBooks"
-		//ng-click="bookShow.goToBookById(book.id)"
-		//ng-style="{ 'background-image': 'url(' + book.cover + ')' }"
-		//)
-		//	.title {{ book.name }}

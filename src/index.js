@@ -8,26 +8,27 @@ require('angular-ui-router');
 var app = angular.module('discover-section-challenge', ['ui.router']);
 
 // configure states handling
-app.config(states);
+app
+	.config(states)
 
-app.run(['$rootScope', '$state', function($rootScope){
+	.run(['$rootScope', '$state', function($rootScope){
 
-	// on state-change
-	$rootScope.$on('$stateChangeSuccess', function(e, toState){
+		// on state-change
+		$rootScope.$on('$stateChangeSuccess', function(e, toState){
 
-		// apply state title
-		document.title = toState.title;
+			// apply state title
+			document.title = toState.title;
 
-		// scroll to top
-		window.scroll(0, 0);
-	});
+			// scroll to top
+			window.scroll(0, 0);
+		});
 
-}]);
+	}])
 
 // register this modules components
-app.directive('booksIndex', require('./books-index/books-index.dirc'));
-app.directive('bookShow', require('./book-show/book-show.dirc'));
-app.directive('bookCard', require('./book-card/book-card.dirc'));
-app.factory('booksService', require('./books.serv'));
-app.filter('daysSince', require('./years-since.filt'));
-app.filter('booksSuffix', require('./books-suffix.filt'));
+	.directive('booksIndex', require('./books-index/books-index.dirc'))
+	.directive('bookShow', require('./book-show/book-show.dirc'))
+	.directive('bookCard', require('./book-card/book-card.dirc'))
+	.factory('booksService', require('./books.serv'))
+	.filter('yearsSince', require('./years-since.filt'))
+	.filter('booksSuffix', require('./books-suffix.filt'));

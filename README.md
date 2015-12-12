@@ -12,18 +12,10 @@
 		cd discover-section-challenge
 		npm install
 
-3.  Run build
-
-		npm run build
+3.  Run build `npm run build`
 	
-	**Notice:** It is at this stage that books.json image urls are being uniquefied, so that different images would so for every book. To disable this behaviour, you may run the following line:
+	**Notice:** It is at this stage that books.json image urls are being uniquefied, so that different images would so for every book. To disable this behaviour, you may run the following line: `CLONE_IMAGES=true npm run build`
 	
-		CLONE_IMAGES=true npm run build
-	
-4.  Run main file
-
-		node .
+4.  Run main file `node .`
 		
-	**Optionally:** Run server from any other port using the following line:
-	
-		PORT=12345 node .
+	**Optionally:** Run server from any other port using the following line: `PORT=12345 node .`
